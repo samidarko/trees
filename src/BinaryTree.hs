@@ -20,3 +20,25 @@ search x (Node a left right)
   | x < a = search x left
   | x > a = search x right
 
+delete :: (Ord a) => a -> Tree a -> Tree a
+delete x n@(Leaf) = n
+delete x n@(Node a Leaf Leaf) = if (x == a) then Leaf else n
+delete x n@(Node a left Leaf) = 
+    if x == a 
+       then left 
+    else if x < a
+       then Node a (delete x left) Leaf
+    else n
+delete x n@(Node a Leaf right) = 
+    if x == a 
+       then right 
+    else if x > a
+       then Node a Leaf (delete x right)
+    else n
+delete x n@(Node a left right) = 
+    if x == a 
+       then Leaf -- TODO insert left right 
+    else if x < a
+       then Node a (delete x left) right
+    else Node a left (delete x right)
+

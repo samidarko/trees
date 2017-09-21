@@ -1,1 +1,1 @@
-# simple trees manipulation in Haskell
+# Simple tree manipulation in Haskell
